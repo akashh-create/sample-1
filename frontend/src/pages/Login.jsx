@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -30,7 +30,7 @@ const Login = () => {
 
       login(data.user, data.token);
       navigate('/dashboard');
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
@@ -48,23 +48,23 @@ const Login = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+            required />
+          
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            required />
+          
           <button type="submit" disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
         <p>Don't have an account? <Link to="/register">Register</Link></p>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Login;

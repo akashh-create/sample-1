@@ -11,7 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -37,14 +37,14 @@ const Register = () => {
       });
 
       const loginData = await loginRes.json();
-      
+
       if (!loginRes.ok) {
         throw new Error(loginData.error || 'Login failed');
       }
 
       login(loginData.user, loginData.token);
       navigate('/dashboard');
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
@@ -62,30 +62,30 @@ const Register = () => {
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
-          />
+            required />
+          
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+            required />
+          
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            required />
+          
           <button type="submit" disabled={loading}>
             {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
         <p>Already have an account? <Link to="/login">Login</Link></p>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Register;
