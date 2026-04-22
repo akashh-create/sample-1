@@ -1,14 +1,5 @@
 import mongoose from 'mongoose';
-
-export interface IExpense {
-  userId: mongoose.Types.ObjectId;
-  title: string;
-  amount: number;
-  category: string;
-  date: Date;
-}
-
-const expenseSchema = new mongoose.Schema<IExpense>({
+const expenseSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -33,6 +24,7 @@ const expenseSchema = new mongoose.Schema<IExpense>({
     type: Date,
     default: Date.now
   }
-}, { timestamps: true });
-
+}, {
+  timestamps: true
+});
 export const Expense = mongoose.model('Expense', expenseSchema);
